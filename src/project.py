@@ -23,6 +23,10 @@ def main():
         hoefler_font = pygame.font.Font('hoefler.ttf', 64)  # Load Hoefler font
         instructions_font = pygame.font.Font('freesansbold.ttf', 32)
         
+        # Play intro song
+        mixer.music.load("intro_song.wav")
+        mixer.music.play(-1)
+        
         # Render text
         welcome_text = intro_font.render("Welcome to", True, (255, 255, 255))
         instructions_text = instructions_font.render("Press ENTER to Start, ESC to Quit", True, (255, 255, 255))
@@ -44,10 +48,11 @@ def main():
                 exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:  # Press Enter to start
-                    intro = False
-                if event.key == pygame.K_ESCAPE:  # Press Escape to quit
-                    pygame.quit()
-                    exit()
+                  intro = False
+                mixer.music.stop()  # Stop intro song when starting the game
+            if event.key == pygame.K_ESCAPE:  # Press Escape to quit
+                pygame.quit()
+                exit()
 
     # Background
     background = pygame.image.load('background.png')
