@@ -2,7 +2,6 @@ import math
 import random
 import pygame
 from PIL import Image
-import os
 from pygame import mixer
 
 def main():
