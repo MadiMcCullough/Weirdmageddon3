@@ -10,7 +10,8 @@ The theme is centered around Disney's show *Gravity Falls* by Alex Hirsch. The s
  - Video 
     - 
  - Github Repository
-    - 
+    - https://github.com/MadiMcCullough/Weirdmageddon3/blob/main/README.md
+      
 ## Gameplay
 - Use left and right arrows to move your player
 - Hit space to shoot
