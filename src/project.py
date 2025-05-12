@@ -15,7 +15,7 @@ def main():
 
     # Declare nonlocal variables
     # Create the screen in full screen mode
-    screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+    screen = pygame.display.set_mode((pygame.display.Info().current_w, pygame.display.Info().current_h), pygame.FULLSCREEN)
 
     # Intro Screen
     intro = True
@@ -57,8 +57,8 @@ def main():
 
     # Player
     playerImg = pygame.image.load('md.png')
-    playerX = 370
-    playerY = 380
+    playerX = screen.get_width() // 2 - playerImg.get_width() // 2
+    playerY = screen.get_height() - playerImg.get_height() - 20
     playerX_change = 0
 
     # Enemy
@@ -71,7 +71,7 @@ def main():
 
     for i in range(num_of_enemies):
         enemyImg.append(pygame.image.load('bill.png'))
-        enemyX.append(random.randint(0, 736))
+        enemyX.append(random.randint(0, screen.get_width() - 64))
         enemyY.append(random.randint(50, 150))
         enemyX_change.append(4)
         enemyY_change.append(40)
@@ -79,8 +79,7 @@ def main():
     # Bullet
     bulletImg = pygame.image.load('nyan_cat.png')
     bulletX = 0
-    bulletY = 380
-    # Removed unused variable bulletX_change
+    bulletY = playerY
     bulletY_change = 10
     bullet_state = "ready"
 
@@ -99,7 +98,7 @@ def main():
 
     def game_over_text():
         over_text = over_font.render("GAME OVER", True, (255, 255, 255))
-        screen.blit(over_text, (200, 250))
+        screen.blit(over_text, (screen.get_width() // 2 - over_text.get_width() // 2, screen.get_height() // 2 - over_text.get_height() // 2))
 
     def player(x, y):
         screen.blit(playerImg, (x, y))
@@ -118,7 +117,7 @@ def main():
 
 
     # Initialize global variables
-    bulletY = 380
+    bulletY = playerY
     bullet_state = "ready"
     score_value = 0
 
@@ -157,15 +156,15 @@ def main():
         playerX += playerX_change
         if playerX <= 0:
             playerX = 0
-        elif playerX >= 736:
-            playerX = 736
+        elif playerX >= screen.get_width() - playerImg.get_width():
+            playerX = screen.get_width() - playerImg.get_width()
 
         # Enemy Movement
         for i in range(num_of_enemies):
             # Game Over
-            if enemyY[i] > 340:
+            if enemyY[i] > screen.get_height() - 100:
                 for j in range(num_of_enemies):
-                    enemyY[j] = 2000
+                    enemyY[j] = screen.get_height() + 1000
                 game_over_text()
                 break
 
@@ -173,7 +172,7 @@ def main():
             if enemyX[i] <= 0:
                 enemyX_change[i] = 4
                 enemyY[i] += enemyY_change[i]
-            elif enemyX[i] >= 736:
+            elif enemyX[i] >= screen.get_width() - enemyImg[i].get_width():
                 enemyX_change[i] = -4
                 enemyY[i] += enemyY_change[i]
 
@@ -182,17 +181,17 @@ def main():
             if collision:
                 explosionSound = mixer.Sound("explosion.wav")
                 explosionSound.play()
-                bulletY = 380
+                bulletY = playerY
                 bullet_state = "ready"
                 score_value += 1
-                enemyX[i] = random.randint(0, 736)
+                enemyX[i] = random.randint(0, screen.get_width() - enemyImg[i].get_width())
                 enemyY[i] = random.randint(50, 150)
 
             enemy(enemyX[i], enemyY[i], i)
 
         # Bullet Movement
         if bulletY <= 0:
-            bulletY = 380
+            bulletY = playerY
             bullet_state = "ready"
         if bullet_state == "fire":
             fire_bullet(bulletX, bulletY)
