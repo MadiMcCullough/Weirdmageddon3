@@ -17,6 +17,30 @@ def main():
     # Create the screen in full screen mode
     screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
+    # Intro Screen
+    intro = True
+    while intro:
+        screen.fill((0, 0, 0))
+        intro_font = pygame.font.Font('freesansbold.ttf', 64)
+        intro_text = intro_font.render("Welcome to Weirdmageddon", True, (255, 255, 255))
+        instructions_font = pygame.font.Font('freesansbold.ttf', 32)
+        instructions_text = instructions_font.render("Press ENTER to Start, ESC to Quit", True, (255, 255, 255))
+        
+        screen.blit(intro_text, (screen.get_width() // 2 - intro_text.get_width() // 2, screen.get_height() // 2 - intro_text.get_height() // 2 - 50))
+        screen.blit(instructions_text, (screen.get_width() // 2 - instructions_text.get_width() // 2, screen.get_height() // 2 - instructions_text.get_height() // 2 + 50))
+        pygame.display.update()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:  # Press Enter to start
+                    intro = False
+                if event.key == pygame.K_ESCAPE:  # Press Escape to quit
+                    pygame.quit()
+                    exit()
+
     # Background
     background = pygame.image.load('background.png')
     background = pygame.transform.scale(background, (screen.get_width(), screen.get_height()))
