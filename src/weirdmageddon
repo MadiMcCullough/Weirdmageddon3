@@ -17,6 +17,7 @@ def main():
 
     # Background
     background = pygame.image.load('background.png')
+    background = pygame.transform.scale(background, screen.get_size())  # Scale background to fullscreen
 
     # Sound
     mixer.music.load("background.wav")
