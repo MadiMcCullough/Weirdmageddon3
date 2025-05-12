@@ -1,0 +1,6 @@
+pygame
+pillow
+math
+random
+os
+mixer
