@@ -21,8 +21,9 @@ The theme is centered around Disney's show *Gravity Falls* by Alex Hirsch. The s
 - If you get hit by a Bill you lose!
 
 ## SRC contains:
- - code for Weirdmageddon game
+ - project.py
  - any images or sounds used
+ - requirements.txt
 
 # Credits
 - Basic Space Invader's Game Code
