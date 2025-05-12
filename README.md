@@ -7,7 +7,7 @@ This code will create a game that resembles a shoot 'em up video game like *Spac
 The theme is centered around Disney's show *Gravity Falls* by Alex Hirsch. The show was very impactful for the children that grew up watching it and has inspired many artists to pursue a career in animation. 
 
 ## URLS
- - Video 
+ - Demo Video 
     - 
  - Github Repository
     - https://github.com/MadiMcCullough/Weirdmageddon3/blob/main/README.md
