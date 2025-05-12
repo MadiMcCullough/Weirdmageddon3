@@ -4,9 +4,16 @@ import pygame
 from pygame import mixer
 
 def main():
+
+    global playerX, playerY, playerX_change, bulletX, bulletY, bullet_state, score_value
+    
+    # Initialize the mixer
+    mixer.init()
+
     # Initialize the pygame
     pygame.init()
 
+    # Declare nonlocal variables
     # Create the screen
     screen = pygame.display.set_mode((800, 500))
 
@@ -47,7 +54,7 @@ def main():
     bulletImg = pygame.image.load('nyan_cat.png')
     bulletX = 0
     bulletY = 380
-    bulletX_change = 0
+    # Removed unused variable bulletX_change
     bulletY_change = 10
     bullet_state = "ready"
 
@@ -75,7 +82,7 @@ def main():
         screen.blit(enemyImg[i], (x, y))
 
     def fire_bullet(x, y):
-        nonlocal bullet_state
+        global bullet_state
         bullet_state = "fire"
         screen.blit(bulletImg, (x + 16, y + 10))
 
@@ -83,10 +90,16 @@ def main():
         distance = math.sqrt(math.pow(enemyX - bulletX, 2) + (math.pow(enemyY - bulletY, 2)))
         return distance < 27
 
+    # Declare global variables at the top of the function
+    global bulletY, bullet_state, score_value
+
+    # Initialize global variables
+    bulletY = 380
+    bullet_state = "ready"
+    score_value = 0
+
     # Game Loop
     running = True
-    # Declare nonlocal variables at the top of the function
-    nonlocal bulletY, bullet_state, score_value
     while running:
         # RGB = Red, Green, Blue
         screen.fill((0, 0, 0))
