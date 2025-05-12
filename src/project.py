@@ -6,13 +6,10 @@ from pygame import mixer
 
 def main():
 
-    # Initialize the mixer
+    # Initialize the mixer and pygame
     mixer.init()
-
-    # Initialize the pygame
     pygame.init()
 
-    # Declare nonlocal variables
     # Create the screen in full screen mode
     screen = pygame.display.set_mode((pygame.display.Info().current_w, pygame.display.Info().current_h), pygame.FULLSCREEN)
 
@@ -20,12 +17,24 @@ def main():
     intro = True
     while intro:
         screen.fill((0, 0, 0))
+        
+        # Fonts
         intro_font = pygame.font.Font('freesansbold.ttf', 64)
-        intro_text = intro_font.render("Welcome to Weirdmageddon", True, (255, 255, 255))
+        hoefler_font = pygame.font.Font('hoefler.ttf', 64)  # Load Hoefler font
         instructions_font = pygame.font.Font('freesansbold.ttf', 32)
+        
+        # Render text
+        welcome_text = intro_font.render("Welcome to", True, (255, 255, 255))
         instructions_text = instructions_font.render("Press ENTER to Start, ESC to Quit", True, (255, 255, 255))
         
-        screen.blit(intro_text, (screen.get_width() // 2 - intro_text.get_width() // 2, screen.get_height() // 2 - intro_text.get_height() // 2 - 50))
+        # Glitch effect for "Weirdmageddon"
+        glitch_x = random.randint(-5, 5)  # Random horizontal offset
+        glitch_y = random.randint(-5, 5)  # Random vertical offset
+        weirdmageddon_text = hoefler_font.render("Weirdmageddon", True, (255, 255, 255))
+        
+        # Blit text to screen
+        screen.blit(welcome_text, (screen.get_width() // 2 - welcome_text.get_width() // 2, screen.get_height() // 2 - welcome_text.get_height() // 2 - 100))
+        screen.blit(weirdmageddon_text, (screen.get_width() // 2 - weirdmageddon_text.get_width() // 2 + glitch_x, screen.get_height() // 2 - weirdmageddon_text.get_height() // 2 - 30 + glitch_y))
         screen.blit(instructions_text, (screen.get_width() // 2 - instructions_text.get_width() // 2, screen.get_height() // 2 - instructions_text.get_height() // 2 + 50))
         pygame.display.update()
 
