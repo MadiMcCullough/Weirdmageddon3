@@ -18,12 +18,12 @@ def main():
     mixer.music.play(-1)
 
     # Caption and Icon
-    pygame.display.set_caption("Space Invader")
-    icon = pygame.image.load('ufo.png')
+    pygame.display.set_caption("Weirdmageddon")
+    icon = pygame.image.load('bill.png')
     pygame.display.set_icon(icon)
 
     # Player
-    playerImg = pygame.image.load('player.png')
+    playerImg = pygame.image.load('md.png')
     playerX = 370
     playerY = 380
     playerX_change = 0
@@ -37,14 +37,14 @@ def main():
     num_of_enemies = 6
 
     for i in range(num_of_enemies):
-        enemyImg.append(pygame.image.load('enemy.png'))
+        enemyImg.append(pygame.image.load('bill.png'))
         enemyX.append(random.randint(0, 736))
         enemyY.append(random.randint(50, 150))
         enemyX_change.append(4)
         enemyY_change.append(40)
 
     # Bullet
-    bulletImg = pygame.image.load('bullet.png')
+    bulletImg = pygame.image.load('nyan_cat.png')
     bulletX = 0
     bulletY = 380
     bulletX_change = 0
@@ -85,6 +85,7 @@ def main():
 
     # Game Loop
     running = True
+    # Declare nonlocal variables at the top of the function
     nonlocal bulletY, bullet_state, score_value
     while running:
         # RGB = Red, Green, Blue
