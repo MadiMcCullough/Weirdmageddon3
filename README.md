@@ -17,6 +17,7 @@ The theme is centered around Disney's show *Gravity Falls* by Alex Hirsch. The s
 - Hit space to shoot
 - Every time your score increases by 20 points more Bills will appear
 - ESC - Exit the game
+- When the player's score increases by 20 points the amount of enemies that appear increases
 - There is a way to win! It is a special number to Dipper and Mabel
 - If you get hit by a Bill you lose!
 
@@ -25,6 +26,14 @@ The theme is centered around Disney's show *Gravity Falls* by Alex Hirsch. The s
  - any images or sounds used
  - requirements.txt
 
+## Areas of Improvement:
+ - more special effects
+ - better quality gameplay 
+ - sound editing
+ - multiple versions of Bill enemies
+ - give enemies the ability to attack
+ - make levels more obvious
+   
 # Credits
 - Basic Space Invader's Game Code
   - https://www.codingal.com/coding-for-kids/blog/space-invaders-game-using-python/
